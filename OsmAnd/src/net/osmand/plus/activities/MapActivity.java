@@ -274,7 +274,7 @@ public class MapActivity extends AccessibleActivity  {
 
 	@Override
 	public void onBackPressed() {
-		if (!mapActions.onBackPressed()){
+		if (!mapActions.onBackPressed()) {
 			super.onBackPressed();
 		}
 	}
