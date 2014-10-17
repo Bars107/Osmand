@@ -98,6 +98,7 @@ public class MapActivityActions implements DialogProvider {
 	DrawerLayout mDrawerLayout;
 	ListView mDrawerList;
 	private WaypointDialogHelper waypointDialogHelper;
+	private ConfigureSettingsMenuHelper configureSettingsMenuHelper;
 	
 
 	public MapActivityActions(MapActivity mapActivity){
@@ -105,6 +106,7 @@ public class MapActivityActions implements DialogProvider {
 		settings = mapActivity.getMyApplication().getSettings();
 		routingHelper = mapActivity.getMyApplication().getRoutingHelper();
 		waypointDialogHelper = new WaypointDialogHelper(mapActivity);
+		configureSettingsMenuHelper = new ConfigureSettingsMenuHelper(mapActivity.getMyApplication());
 		waypointDialogHelper.init();
 	}
 
@@ -923,7 +925,6 @@ public class MapActivityActions implements DialogProvider {
 
 								final List<WaypointHelper.LocationPointWrapper> deletedPoints = new ArrayList<WaypointHelper.LocationPointWrapper>();
 								ArrayAdapter<Object> adapter = waypointDialogHelper.getWaypointsAdapter(app.getMapActivity(), deletedPoints);
-								mDrawerList = (ListView) mapActivity.findViewById(R.id.left_drawer);
 								mDrawerList.setAdapter(adapter);
 								return false;
 							} else {
@@ -939,8 +940,8 @@ public class MapActivityActions implements DialogProvider {
 				.listen(new OnContextMenuClick() {
 					@Override
 					public boolean onContextMenuClick(int itemId, int pos, boolean isChecked, DialogInterface dialog) {
-						mapActivity.startActivity(new Intent(mapActivity, ConfigureSettingsMenuHelper.class));
-						return true;
+						configureSettingsMenuHelper.setListView(mDrawerList);
+						return false;
 						//mapActivity.getMapLayers().openLayerSelectionDialog(mapView);
 					}
 				}).reg();
