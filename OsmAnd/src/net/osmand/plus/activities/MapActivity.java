@@ -127,6 +127,7 @@ public class MapActivity extends AccessibleActivity  {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 
+		
 		mapActions = new MapActivityActions(this);
 		mapLayers = new MapActivityLayers(this);
 		// Full screen is not used here
@@ -275,6 +276,13 @@ public class MapActivity extends AccessibleActivity  {
 	@Override
 	public void onBackPressed() {
 		if (!mapActions.onBackPressed()) {
+			super.onBackPressed();
+		}
+	}
+
+	@Override
+	public void onBackPressed() {
+		if (!mapActions.onBackPressed()){
 			super.onBackPressed();
 		}
 	}
