@@ -162,7 +162,7 @@ public class MainMenuActivity extends BaseDownloadActivity implements OsmAndLoca
 			finish();
 			return;
 		}
-		setContentView(R.layout.dashboard);
+		setContentView(R.layout.start_menu);
 
 		String textVersion = Version.getFullVersion(getMyApplication());
 		if (textVersion.contains("#")) {
